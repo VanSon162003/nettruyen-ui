@@ -1,0 +1,94 @@
+.header {
+    background: linear-gradient(to right, #7c3aed, #5b21b6);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+    &__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+    }
+
+    &__logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+
+        .logo-blue {
+            color: #60a5fa; /* text-blue-300 */
+        }
+        .logo-pink {
+            color: #f472b6; /* text-pink-300 */
+        }
+    }
+
+    &__search {
+        flex: 1;
+        max-width: 400px;
+        margin: 0 2rem;
+        position: relative;
+
+        input {
+            width: 100%;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            outline: none;
+            background: white;
+            color: #1f2937; /* gray-800 */
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af; /* gray-400 */
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .btn {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .account {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+
+            .icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            span {
+                font-size: 0.875rem;
+            }
+        }
+    }
+}

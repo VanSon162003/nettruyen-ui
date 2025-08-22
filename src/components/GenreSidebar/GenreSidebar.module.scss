@@ -1,0 +1,48 @@
+.sidebar {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+}
+
+.title {
+    font-size: 1.125rem; // text-lg
+    font-weight: 600;
+    color: #7e22ce; // purple-700
+    margin-bottom: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.all {
+    color: #9333ea; // purple-600
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.genreList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    max-height: 24rem; // max-h-96
+    overflow-y: auto;
+}
+
+.genreBtn {
+    text-align: left;
+    color: #374151; // gray-700
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: #9333ea; // purple-600
+        background: #faf5ff; // purple-50
+    }
+}
