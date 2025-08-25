@@ -1,0 +1,311 @@
+.chapterDetail {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: white;
+
+    .loadingSpinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 18px;
+        margin: 0;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    transform: translateY(-100%);
+    transition: all 0.3s ease;
+
+    &.visible {
+        transform: translateY(0);
+    }
+
+    .headerContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .backBtn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    }
+
+    .chapterInfo {
+        text-align: center;
+        color: white;
+
+        h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            max-width: 400px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        p {
+            font-size: 14px;
+            margin: 0;
+            opacity: 0.8;
+        }
+    }
+
+    .headerActions {
+        .fullscreenBtn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+.content {
+    padding-top: 80px;
+    padding-bottom: 100px;
+
+    .imageContainer {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .pageWrapper {
+        position: relative;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        .pageImage {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: white;
+        }
+
+        .pageNumber {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+}
+
+.bottomControls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+
+    &.visible {
+        transform: translateY(0);
+    }
+
+    .controlsContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .chapterBtn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    }
+
+    .pageControls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .pageBtn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover:not(:disabled) {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+
+        .pageInfo {
+            color: white;
+            font-weight: 500;
+            min-width: 80px;
+            text-align: center;
+        }
+    }
+}
+
+.instructions {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 999;
+
+    p {
+        margin: 0;
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .header {
+        .headerContent {
+            padding: 0 10px;
+        }
+
+        .chapterInfo {
+            h1 {
+                font-size: 16px;
+                max-width: 200px;
+            }
+        }
+    }
+
+    .content {
+        .imageContainer {
+            padding: 0 10px;
+        }
+    }
+
+    .bottomControls {
+        .controlsContent {
+            padding: 0 10px;
+        }
+
+        .chapterBtn {
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+    }
+
+    .instructions {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .bottomControls {
+        .controlsContent {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .pageControls {
+            order: -1;
+        }
+    }
+}

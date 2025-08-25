@@ -1,48 +1,204 @@
 .sidebar {
-    background: #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    padding: 1.5rem;
-}
-
-.title {
-    font-size: 1.125rem; // text-lg
-    font-weight: 600;
-    color: #7e22ce; // purple-700
-    margin-bottom: 1rem;
-}
-
-.container {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-}
-
-.all {
-    color: #9333ea; // purple-600
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-}
-
-.genreList {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-    max-height: 24rem; // max-h-96
+    gap: 1.5rem;
+    /* Added sticky positioning and max height for better UX */
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
     overflow-y: auto;
 }
 
-.genreBtn {
-    text-align: left;
-    color: #374151; // gray-700
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    background: transparent;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    cursor: pointer;
+.section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Added transition for smooth interactions */
+    transition: all 0.3s ease;
+}
 
-    &:hover {
-        color: #9333ea; // purple-600
-        background: #faf5ff; // purple-50
+.section:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1.25rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.sectionTitle svg {
+    color: #667eea;
+}
+
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.genreTag {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #64748b;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.genreTag:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.trendingList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.trendingItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    background: rgba(248, 250, 252, 0.8);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.trendingItem:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateX(4px);
+}
+
+.rank {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.info {
+    flex: 1;
+    min-width: 0;
+}
+
+.name {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    /* Added text truncation for long names */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.views {
+    color: #64748b;
+    font-size: 0.75rem;
+}
+
+.trend {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 12px;
+    background: rgba(248, 250, 252, 0.8);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.day:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateX(2px);
+}
+
+.dayName {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.count {
+    color: #667eea;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+/* Added responsive design for mobile */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        max-height: none;
+        gap: 1rem;
+    }
+
+    .section {
+        padding: 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .genreTag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .trendingItem {
+        padding: 0.5rem;
+        gap: 0.75rem;
+    }
+
+    .rank {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.8rem;
+    }
+
+    .name {
+        font-size: 0.85rem;
     }
 }

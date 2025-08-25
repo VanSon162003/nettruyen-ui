@@ -1,5 +1,8 @@
+"use client";
+
 import { Search, Users } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 const Header = () => {
@@ -7,33 +10,33 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-            <div className={styles.header__container}>
-                <div className={styles.header__content}>
+            <div className={styles.container}>
+                <div className={styles.content}>
                     {/* Logo */}
-                    <div className={styles.header__logo}>
-                        <span className={styles["logo-blue"]}>Net</span>
-                        <span className={styles["logo-pink"]}>Truyen</span>
-                    </div>
+                    <Link to="/" className={styles.logo}>
+                        <span className={styles.logoBlue}>Net</span>
+                        <span className={styles.logoPink}>Truyen</span>
+                    </Link>
 
                     {/* Search */}
-                    <div className={styles.header__search}>
+                    <div className={styles.search}>
                         <input
                             type="text"
                             placeholder="Tìm truyện..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <Search className={styles["search-icon"]} />
+                        <Search className={styles.searchIcon} />
                     </div>
 
                     {/* Actions */}
-                    <div className={styles.header__actions}>
+                    <div className={styles.actions}>
                         <button className={styles.btn}>💡</button>
                         <button className={styles.btn}>💬</button>
-                        <div className={styles.account}>
+                        <Link to="/login" className={styles.account}>
                             <Users className={styles.icon} />
-                            <span>Tài khoản</span>
-                        </div>
+                            <span>Đăng nhập</span>
+                        </Link>
                     </div>
                 </div>
             </div>

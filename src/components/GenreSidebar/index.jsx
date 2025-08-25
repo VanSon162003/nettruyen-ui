@@ -1,44 +1,96 @@
+import { TrendingUp, Users, Calendar } from "lucide-react";
 import styles from "./GenreSidebar.module.scss";
 
+import genresService from "../../service/genresService";
+import { useEffect, useState } from "react";
+import comicsService from "../../service/comicsService";
+
 const GenreSidebar = () => {
-    const mockGenres = [
-        { id: 1, name: "Action" },
-        { id: 2, name: "Adventure" },
-        { id: 3, name: "Anime" },
-        { id: 4, name: "Chuyển Sinh" },
-        { id: 5, name: "Comedy" },
-        { id: 6, name: "Comic" },
-        { id: 7, name: "Cooking" },
-        { id: 8, name: "Cổ Đại" },
-        { id: 9, name: "Doujinshi" },
-        { id: 10, name: "Drama" },
-        { id: 11, name: "Đam Mỹ" },
-        { id: 12, name: "Fantasy" },
-        { id: 13, name: "Gender Bender" },
-        { id: 14, name: "Historical" },
-        { id: 15, name: "Horror" },
-        { id: 16, name: "Live action" },
-        { id: 17, name: "Manga" },
-        { id: 18, name: "Manhua" },
-        { id: 19, name: "Manhwa" },
-        { id: 20, name: "Martial Arts" },
-        { id: 21, name: "Mecha" },
-        { id: 22, name: "Mystery" },
-        { id: 23, name: "Ngôn Tình" },
-        { id: 24, name: "Psychological" },
-    ];
+    // const trendingComics = [
+    //     { name: "Solo Leveling", views: "2.5M", trend: "+15%" },
+    //     { name: "Tower of God", views: "1.8M", trend: "+12%" },
+    //     { name: "The Beginning After The End", views: "1.2M", trend: "+8%" },
+    // ];
+
+    const [genres, setGenres] = useState([]);
+    const [trendingComics, setTrendingComics] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const result = await genresService.getAll();
+            setGenres(result.data.splice(0, 11).map((item) => item.name));
+        })();
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            const result = await comicsService.getPopular();
+            result.data.forEach((item) => {
+                setTrendingComics((prev) => {
+                    return [
+                        ...prev,
+                        {
+                            name: item.name,
+                            views: item.views,
+                            trend: `${item.ratings} *`,
+                        },
+                    ];
+                });
+            });
+        })();
+    }, []);
 
     return (
         <div className={styles.sidebar}>
-            <h3 className={styles.title}>Thể loại</h3>
-            <div className={styles.container}>
-                <div className={styles.all}>Tất cả</div>
-                <div className={styles.genreList}>
-                    {mockGenres.map((genre) => (
-                        <button key={genre.id} className={styles.genreBtn}>
-                            {genre.name}
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    <TrendingUp size={18} />
+                    Thể loại phổ biến
+                </h3>
+                <div className={styles.genres}>
+                    {genres.map((genre, index) => (
+                        <button key={index} className={styles.genreTag}>
+                            {genre}
                         </button>
                     ))}
+                </div>
+            </div>
+
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    <Users size={18} />
+                    Trending hôm nay
+                </h3>
+                <div className={styles.trendingList}>
+                    {trendingComics.map((comic, index) => (
+                        <div key={index} className={styles.trendingItem}>
+                            <div className={styles.rank}>{index + 1}</div>
+                            <div className={styles.info}>
+                                <div className={styles.name}>{comic.name}</div>
+                                <div className={styles.views}>
+                                    {comic.views} lượt xem
+                                </div>
+                            </div>
+                            <div className={styles.trend}>{comic.trend}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    <Calendar size={18} />
+                    Lịch cập nhật
+                </h3>
+                <div className={styles.schedule}>
+                    <div className={styles.day}>
+                        <span className={styles.dayName}>Hôm nay</span>
+                        <span className={styles.count}>12 truyện</span>
+                    </div>
+                    <div className={styles.day}>
+                        <span className={styles.dayName}>Ngày mai</span>
+                        <span className={styles.count}>8 truyện</span>
+                    </div>
                 </div>
             </div>
         </div>

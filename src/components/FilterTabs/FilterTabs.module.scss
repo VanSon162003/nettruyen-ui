@@ -1,23 +1,95 @@
+.wrapper {
+    margin-bottom: 2rem;
+}
+
 .tabs {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 
-.tab {
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
-    font-weight: 500;
-    background-color: #f3f4f6;
-    color: #374151;
-    transition: background-color 0.2s ease, color 0.2s ease;
-
-    &:hover {
-        background-color: #e5e7eb;
+    &::-webkit-scrollbar {
+        display: none;
     }
 }
 
-.active {
-    background-color: #3b82f6;
-    color: #fff;
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
+
+    .label {
+        font-weight: 600;
+        color: #64748b;
+        font-size: 0.95rem;
+    }
+
+    .count {
+        background: rgba(100, 116, 139, 0.1);
+        color: #64748b;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    &:hover {
+        background: rgba(102, 126, 234, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        border-color: rgba(102, 126, 234, 0.2);
+
+        .label {
+            color: #667eea;
+        }
+
+        .count {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+        }
+    }
+
+    &.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        transform: translateY(-1px);
+
+        .label {
+            color: white;
+        }
+
+        .count {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .tab {
+        padding: 0.75rem 1rem;
+
+        .label {
+            font-size: 0.875rem;
+        }
+
+        .count {
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+        }
+    }
 }

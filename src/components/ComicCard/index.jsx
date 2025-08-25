@@ -1,12 +1,13 @@
 import { Eye, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 import styles from "./ComicCard.module.scss";
 
 const ComicCard = ({ comic }) => {
     return (
-        <div className={styles.card}>
+        <Link to={`/comic/${comic.slug}`} className={styles.card}>
             <div className={styles.thumbnailWrapper}>
                 <img
-                    src={comic.thumbnail}
+                    src={`${import.meta.env.VITE_BASE_URL}${comic?.thumbnail}`}
                     alt={comic.name}
                     className={styles.thumbnail}
                 />
@@ -41,7 +42,7 @@ const ComicCard = ({ comic }) => {
                     <span className={styles.timeAgo}>{comic.timeAgo}</span>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
