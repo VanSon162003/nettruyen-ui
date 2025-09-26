@@ -73,8 +73,8 @@ const Home = () => {
                 const result = await comicsService.getAll(requestParams);
 
                 if (result.success) {
-                    const transformedComics = result.data.comics.map(
-                        (comic) => ({
+                    const transformedComics = result.data.comics
+                        .map((comic) => ({
                             id: comic.id,
                             name: comic.name,
                             slug: comic.slug,
@@ -89,8 +89,8 @@ const Home = () => {
                             genres: comic.genres.map((genre) => genre.name),
                             originalUrl: comic.originalUrl,
                             crawlStatus: comic.crawlStatus,
-                        })
-                    );
+                        }))
+                        .reverse();
 
                     setComics(transformedComics);
                     setPagination(result.data.pagination);
